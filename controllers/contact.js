@@ -8,7 +8,7 @@ var sendgrid  = require('sendgrid')(secrets.sendgrid.user, secrets.sendgrid.pass
 
 exports.getContact = function(req, res) {
   res.render('contact', {
-    title: 'Contact'
+    title: 'Contact Form'
   });
 };
 
@@ -21,10 +21,10 @@ exports.getContact = function(req, res) {
  */
 
 exports.postContact = function(req, res) {
-  req.assert('name', 'Name cannot be blank').notEmpty();
-  req.assert('email', 'Email cannot be blank').notEmpty();
+  req.assert('name', 'Name cannot be left empty').notEmpty();
+  req.assert('email', 'Email cannot be left empty').notEmpty();
   req.assert('email', 'Email is not valid').isEmail();
-  req.assert('message', 'Message cannot be blank').notEmpty();
+  req.assert('message', 'Message cannot be left empty').notEmpty();
 
   var errors = req.validationErrors();
 
